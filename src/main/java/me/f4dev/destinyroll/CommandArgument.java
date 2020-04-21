@@ -12,7 +12,7 @@ public class CommandArgument {
   /**
    * Used in commands as tag (-tag form).
    */
-  private String tag;
+  private String tag = "";
   /**
    * Default value, if argument is not provided in tag.
    */
@@ -25,14 +25,39 @@ public class CommandArgument {
    * If argument should be used in tagged form (-tag)
    */
   private Boolean tagged = false;
+  /**
+   * Argument description used in help.
+   */
+  private String help = "";
   
-  public CommandArgument(String name, String shortname, String tag, String defaultValue, Boolean required, Boolean tagged) {
+  public CommandArgument(String name, String shortname, String tag, String defaultValue,
+                         Boolean required, Boolean tagged, String help) {
     this.name = name;
     this.shortname = shortname;
     this.tag = tag;
     this.defaultValue = defaultValue;
     this.required = required;
     this.tagged = tagged;
+    this.help = help;
+  }
+  
+  public CommandArgument(String name, String shortname, String tag, String defaultValue,
+                         Boolean required, Boolean tagged) {
+    this.name = name;
+    this.shortname = shortname;
+    this.tag = tag;
+    this.defaultValue = defaultValue;
+    this.required = required;
+    this.tagged = tagged;
+  }
+  
+  public CommandArgument(String name, String shortname, String defaultValue, Boolean required,
+                         String help) {
+    this.name = name;
+    this.shortname = shortname;
+    this.defaultValue = defaultValue;
+    this.required = required;
+    this.help = help;
   }
   
   public CommandArgument(String name, String shortname, String defaultValue, Boolean required) {
@@ -42,17 +67,25 @@ public class CommandArgument {
     this.required = required;
   }
   
+  public CommandArgument(String name, String shortname, String defaultValue, String help) {
+    this.name = name;
+    this.shortname = shortname;
+    this.defaultValue = defaultValue;
+    this.help = help;
+  }
+  
   public CommandArgument(String name, String shortname, String defaultValue) {
     this.name = name;
     this.shortname = shortname;
     this.defaultValue = defaultValue;
   }
   
-  /**
-   * @return Argument description used in help.
-   */
-  public String help() {
-    return "";
+  public String getHelp() {
+    return help;
+  }
+  
+  public void setHelp(String help) {
+    this.help = help;
   }
   
   public String getName() {
