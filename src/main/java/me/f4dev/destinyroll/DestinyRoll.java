@@ -6,9 +6,19 @@ import org.apache.commons.cli.*;
 
 import javax.security.auth.login.LoginException;
 
+/**
+ * Main program class, containing startup logic.
+ */
 public class DestinyRoll {
+  /**
+   * Main method, used to startup bot.
+   *
+   * @param args input arguments.
+   * @throws ParseException if there are any problems encountered while parsing the command line tokens.
+   * @throws LoginException if the provided token is invalid.
+   */
   public static void main(String[] args) throws ParseException, LoginException {
-    CommandLine cmd = prepareParser(args);
+    CommandLine cmd = parseArgs(args);
     String token = "", prefix;
     JDABuilder builder = new JDABuilder(AccountType.BOT);
     
@@ -25,7 +35,14 @@ public class DestinyRoll {
     builder.build();
   }
   
-  private static CommandLine prepareParser(String[] args) throws ParseException {
+  /**
+   * Method parses arguments from input.
+   *
+   * @param args input arguments from main()
+   * @return CommandLine with parsed arguments
+   * @throws ParseException if there are any problems encountered while parsing the command line tokens.
+   */
+  private static CommandLine parseArgs(String[] args) throws ParseException {
     Options options = new Options();
     CommandLineParser parser = new DefaultParser();
     CommandLine cmd;
