@@ -6,7 +6,9 @@ public class DestinyRoll {
   public static void main(String[] args) throws ParseException {
     CommandLine cmd = prepareParser(args);
     
-    
+    if(!cmd.hasOption("t")) {
+      System.err.println("You have to pass the token (-t, -token)");
+    }
   }
   
   private static CommandLine prepareParser(String[] args) throws ParseException {
