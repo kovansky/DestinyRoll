@@ -1,4 +1,4 @@
-package me.f4dev.destinyroll;
+package me.f4dev.destinyroll.core;
 
 import java.util.LinkedHashMap;
 
