@@ -1,15 +1,21 @@
 package me.f4dev.destinyroll;
 
+import me.f4dev.destinyroll.commands.CommandListener;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.cli.*;
 
+import javax.annotation.Nonnull;
 import javax.security.auth.login.LoginException;
 
 /**
  * Main program class, containing startup logic.
  */
 public class DestinyRoll {
+  public static String prefix;
+  
   /**
    * Main method, used to startup bot.
    *
@@ -19,7 +25,7 @@ public class DestinyRoll {
    */
   public static void main(String[] args) throws ParseException, LoginException {
     CommandLine cmd = parseArgs(args);
-    String token = "", prefix;
+    String token = "";
     JDABuilder builder = new JDABuilder(AccountType.BOT);
     
     if(!cmd.hasOption("t")) {
@@ -29,9 +35,10 @@ public class DestinyRoll {
       token = cmd.getOptionValue('t');
     }
     
-    prefix = cmd.getOptionValue('p', "!");
+    prefix = cmd.getOptionValue('p', "-");
     
     builder.setToken(token);
+    builder.addEventListeners(new CommandListener());
     builder.build();
   }
   
