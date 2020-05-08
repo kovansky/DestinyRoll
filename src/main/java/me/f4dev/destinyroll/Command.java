@@ -1,9 +1,6 @@
 package me.f4dev.destinyroll;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 
 public class Command {
   String name;
