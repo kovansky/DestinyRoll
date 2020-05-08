@@ -5,24 +5,33 @@ import java.util.LinkedHashMap;
 public class Command {
   String name;
   String shortname;
-  Module module = null;
+  String module;
+  Module moduleObj;
+  String help;
   
   /**
    * ArrayList of arguments (CommandArgument)
    */
   LinkedHashMap<String, CommandArgument> args = new LinkedHashMap<>();
   
-  public Command(String name, String shortname, Module module, LinkedHashMap<String, CommandArgument> args) {
+  public Command(String name, String shortname, String module,
+                 LinkedHashMap<String, CommandArgument> args) {
     this.name = name;
     this.shortname = shortname;
     this.module = module;
     this.args = args;
+    
+    moduleObj = Module.getModule(module);
+    moduleObj.addCommand(this);
   }
   
-  public Command(String name, String shortname, Module module) {
+  public Command(String name, String shortname, String module) {
     this.name = name;
     this.shortname = shortname;
     this.module = module;
+  
+    moduleObj = Module.getModule(module);
+    moduleObj.addCommand(this);
   }
   
   public Command(String name, String shortname) {
@@ -51,11 +60,11 @@ public class Command {
     this.shortname = shortname;
   }
   
-  public Module getModule() {
+  public String getModule() {
     return module;
   }
   
-  public void setModule(Module module) {
+  public void setModule(String module) {
     this.module = module;
   }
   
@@ -81,5 +90,13 @@ public class Command {
   
   public void removeArg(String name) {
     args.remove(name);
+  }
+  
+  public String getHelp() {
+    return help;
+  }
+  
+  public void setHelp(String help) {
+    this.help = help;
   }
 }
